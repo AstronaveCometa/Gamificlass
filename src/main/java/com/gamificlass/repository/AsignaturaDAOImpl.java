@@ -18,6 +18,13 @@ public class AsignaturaDAOImpl implements AsignaturaDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
+	public List<Asignatura> obtenerTodasLasAsignaturas(){
+		String sql = "SELECT * FROM Gamificlass.Asignaturas;";
+		List<Asignatura> resultado = jdbcTemplate.query(sql, new AsignaturaRowMapper());
+		return resultado;
+	}
+	
+	@Override
 	public Asignatura obtenerAsignaturaPorID(int ID) {
 		String sql = "SELECT * FROM Gamificlass.Asignaturas WHERE Asignatura_id = ?";
 		@SuppressWarnings("deprecation")

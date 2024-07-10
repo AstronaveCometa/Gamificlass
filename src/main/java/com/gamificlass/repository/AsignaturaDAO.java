@@ -7,6 +7,8 @@ import com.gamificlass.entity.Estudiante;
 
 public interface AsignaturaDAO {
 
+	List<Asignatura> obtenerTodasLasAsignaturas();
+	
 	Asignatura obtenerAsignaturaPorID(int ID);
 	
 	Asignatura obtenerAsignaturaPorNombre(String asignatura_nombre);

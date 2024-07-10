@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Lista</title>
+    <link rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}" />
+  </head>
+<body>
+    <main>
+        <form th:action="@{/seleccionarAsignatura}" th:object="${todasLasAsignaturas}" method="post">
+            <label for="asignatura">Seleccione asignatura: </label>
+                <select th:id="asignatura" th:field="${asignaturaActual.Asignatura_id}">
+                    <option th:each="asignat : ${todasLasAsignaturas}" th:value="${asignat.Asignatura_id}">
+                        <p th:text="${asignat.Asignatura_nombre}"></p>
+                    </option>
+                </select>
+            <button type="submit" id="boton">Seleccionar</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nivel</th>
+                    <th>Puntaje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="est:${todosLosEstudiantes}">
+                    <th th:text="${est.Estudiante_nombre}"></th>
+                    <td th:text="${est.Estudiante_apellido}"></td>
+                    <td th:text="${est.Estudiante_nivel}"></td>
+                    <td th:text="${est.Estudiante_puntaje}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
