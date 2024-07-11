@@ -60,7 +60,10 @@ public class Estudiante {
 		Estudiante_nivel = estudiante_nivel;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return Estudiante_nombre + " " + Estudiante_apellido;
+	}
 	
     
     

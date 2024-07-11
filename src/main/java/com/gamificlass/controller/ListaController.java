@@ -13,6 +13,9 @@ import com.gamificlass.entity.Asignatura;
 import com.gamificlass.entity.Estudiante;
 import com.gamificlass.repository.AsignaturaDAO;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class ListaController {
 	
@@ -20,18 +23,29 @@ public class ListaController {
 	private AsignaturaDAO asignaturaDAO;
 	
 	@GetMapping(value = {"/","/ListaAsignatura"})
-	public String abrirLista(Model modelo) {
+	public String abrirLista(HttpServletRequest request, Model modelo) {
 		List<Asignatura> todasLasAsignaturas = asignaturaDAO.obtenerTodasLasAsignaturas();
-		Asignatura asignaturaActual = new Asignatura();
-		modelo.addAttribute("todasLasAsignaturas", todasLasAsignaturas);
-		modelo.addAttribute("asignaturaActual", asignaturaActual);
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("asignaturaActual") != null) {
+			Asignatura asignaturaActual = (Asignatura) session.getAttribute("asignaturaActual");
+			List<Estudiante> todosLosEstudiantes = asignaturaDAO.obtenerEstudiantesDeAsignaturaID(asignaturaActual.getAsignatura_id());
+			modelo.addAttribute("todosLosEstudiantes", todosLosEstudiantes);
+			modelo.addAttribute("todasLasAsignaturas", todasLasAsignaturas);
+			modelo.addAttribute("asignaturaActual", asignaturaActual);
+		} else {
+			Asignatura asignaturaActual = new Asignatura();
+			modelo.addAttribute("todasLasAsignaturas", todasLasAsignaturas);
+			modelo.addAttribute("asignaturaActual", asignaturaActual);
+		}
 		return "ListaAsignatura";
 	}
 	
 	@PostMapping(value = "/seleccionarAsignatura")
-	public String mostrarLista(@ModelAttribute(value = "asignaturaActual") Asignatura asignaturaActual, Model modelo) {
-		List<Estudiante> todosLosEstudiantes = asignaturaDAO.obtenerEstudiantesDeAsignaturaID(asignaturaActual.getAsignatura_id());
-		modelo.addAttribute("todosLosEstudiantes", todosLosEstudiantes);		
+	public String mostrarLista(HttpServletRequest request, @ModelAttribute(value = "asignaturaActual") Asignatura asignaturaActual) {
+		HttpSession session = request.getSession();
+		session.setAttribute("asignaturaActual", asignaturaActual);	
 		return "redirect:/ListaAsignatura";
 	}
 	
