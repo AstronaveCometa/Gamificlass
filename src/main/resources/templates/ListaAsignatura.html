@@ -24,6 +24,7 @@
                     <th>Apellido</th>
                     <th>Nivel</th>
                     <th>Puntaje</th>
+					<th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,12 @@
                     <td th:text="${est.Estudiante_apellido}"></td>
                     <td th:text="${est.Estudiante_nivel}"></td>
                     <td th:text="${est.Estudiante_puntaje}"></td>
+					<td>
+<a th:href="@{/respondeEnClase/{id}(id=est.Estudiante_id)}">Responde en clase</a>
+<a th:href="@{/resuelveEnClase/{id}(id=est.Estudiante_id)}">Resuelve en clase</a>
+<a th:href="@{/detectaErrores/{id}(id=est.Estudiante_id)}">Detecta errores</a>
+<a th:href="@{/corrigeErrores/{id}(id=est.Estudiante_id)}">Corrige errores</a>
+					</td>
                 </tr>
             </tbody>
         </table>

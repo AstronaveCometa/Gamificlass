@@ -14,27 +14,27 @@ public class EstudianteService {
 	@Autowired
 	private EstudianteDAO estudianteDAO;
 	
-	List<Estudiante> obtenerTodosLosEstudiantes(){
+	public List<Estudiante> obtenerTodosLosEstudiantes(){
 		return estudianteDAO.obtenerTodosLosEstudiantes();
 	}
 	
-	Estudiante obtenerEstudiantePorId(int ID) {
+	public Estudiante obtenerEstudiantePorId(int ID) {
 		return estudianteDAO.obtenerEstudiantePorId(ID);
 	}
 	
-	void actualizarPuntajePorId(Long puntajeObtenido, int ID) {
+	public void actualizarPuntajePorId(Long puntajeObtenido, int ID) {
 		estudianteDAO.actualizarPuntajePorId(puntajeObtenido, ID);
 	}
 	
-	void actualizarNivelPorId(int nivel, int ID) {
+	public void actualizarNivelPorId(int nivel, int ID) {
 		estudianteDAO.actualizarNivelPorId(nivel, ID);
 	}
 	
-	void crearEstudiante (Estudiante estudiante) {
+	public void crearEstudiante (Estudiante estudiante) {
 		estudianteDAO.crearEstudiante(estudiante);
 	}
 	
-	void eliminarEstudiantePorId(int ID) {
+	public void eliminarEstudiantePorId(int ID) {
 		estudianteDAO.eliminarEstudiantePorId(ID);
 	}
 	
