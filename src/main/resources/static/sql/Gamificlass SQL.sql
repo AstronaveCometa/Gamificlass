@@ -19,6 +19,8 @@ create table Gamificlass.Niveles (
     primary key (Nivel_id)
 );
 
+SELECT * FROM Gamificlass.Niveles WHERE Nivel_puntaje_inicio >= 500 AND Nivel_puntaje_final <= 500;
+
 create table Gamificlass.Actividades (
 	Actividad_id int not null auto_increment,
     Actividad_descripcion varchar(50) not null,
@@ -48,11 +50,12 @@ create table Gamificlass.Asistencias (
 create table Gamificlass.Asignaturas (
 	Asignatura_id int not null auto_increment,
     Asignatura_nombre varchar(40) not null,
+    Asignatura_inicio date,
     primary key (Asignatura_id)
 );
 
-insert into Gamificlass.Asignaturas (Asignatura_nombre) value
-('Armonia II');
+insert into Gamificlass.Asignaturas (Asignatura_nombre, Asignatura_inicio) value
+('Armonia II', '2024-05-23');
 
 create table Gamificlass.Estudiante_tiene_Asignatura (
 	Estudiante_Asignatura_id int not null auto_increment,
@@ -63,14 +66,6 @@ create table Gamificlass.Estudiante_tiene_Asignatura (
     foreign key (Asignatura_id) references Gamificlass.Asignaturas (Asignatura_id)
 );
 
-insert into Gamificlass.Estudiante_tiene_Asignatura (Estudiante_id, Asignatura_id) value
-(1,1),
-(2,1),
-(3,1),
-(4,1),
-(5,1),
-(6,1);
-
 insert into Gamificlass.Estudiantes (Estudiante_nombre, Estudiante_apellido, Estudiante_puntaje, Estudiante_nivel) value
 ('José','Angulo',0,1),
 ('Benjamín','Cornejo',0,1),
@@ -78,6 +73,14 @@ insert into Gamificlass.Estudiantes (Estudiante_nombre, Estudiante_apellido, Est
 ('Danae','Pereira',0,1),
 ('Ilians','Robles',0,1),
 ('Anaís','Silva',0,1);
+
+insert into Gamificlass.Estudiante_tiene_Asignatura (Estudiante_id, Asignatura_id) value
+(1,1),
+(2,1),
+(3,1),
+(4,1),
+(5,1),
+(6,1);
 
 insert into Gamificlass.Rachas (Racha_estudiante_id,Racha_racha) value
 (1,1),

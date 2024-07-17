@@ -31,11 +31,15 @@ public class ListaController {
 		if(session.getAttribute("asignaturaActual") != null) {
 			Asignatura asignaturaActual = (Asignatura) session.getAttribute("asignaturaActual");
 			List<Estudiante> todosLosEstudiantes = asignaturaDAO.obtenerEstudiantesDeAsignaturaID(asignaturaActual.getAsignatura_id());
+			int semana = asignaturaDAO.obtenerSemanaDeAsignaturaPorID(asignaturaActual.getAsignatura_id());
+			modelo.addAttribute("semana", semana);
 			modelo.addAttribute("todosLosEstudiantes", todosLosEstudiantes);
 			modelo.addAttribute("todasLasAsignaturas", todasLasAsignaturas);
 			modelo.addAttribute("asignaturaActual", asignaturaActual);
 		} else {
 			Asignatura asignaturaActual = new Asignatura();
+			Integer semana = 0;
+			modelo.addAttribute("semana", semana);
 			modelo.addAttribute("todasLasAsignaturas", todasLasAsignaturas);
 			modelo.addAttribute("asignaturaActual", asignaturaActual);
 		}

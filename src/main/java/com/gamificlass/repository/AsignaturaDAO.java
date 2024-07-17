@@ -15,4 +15,6 @@ public interface AsignaturaDAO {
 	
 	List<Estudiante> obtenerEstudiantesDeAsignaturaID(int ID);
 	
+	int obtenerSemanaDeAsignaturaPorID(int ID);
+	
 }

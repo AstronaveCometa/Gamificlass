@@ -1,5 +1,6 @@
 package com.gamificlass.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,23 @@ public class AsignaturaDAOImpl implements AsignaturaDAO {
 		@SuppressWarnings("deprecation")
 		List<Estudiante> resultado = jdbcTemplate.query(sql, new Object[]{ID}, new EstudianteRowMapper());
 		return resultado;
+	}
+
+	@Override
+	public int obtenerSemanaDeAsignaturaPorID(int ID) {
+		String sql = "SELECT * FROM Gamificlass.Asignaturas WHERE Asignatura_id = ?";
+		@SuppressWarnings("deprecation")
+		List<Asignatura> resultado = jdbcTemplate.query(sql, new Object[]{ID}, new AsignaturaRowMapper());
+		if(resultado.isEmpty()) {
+			return 0;
+		} else {
+			String inicio = resultado.get(0).getAsignatura_inicio();
+			Date fechaActual = new Date();
+			int diasInicio = Integer.parseInt(inicio.substring(5, 7))*30 + Integer.parseInt(inicio.substring(8));
+			int diasActual = (fechaActual.getMonth()+1)*30 + fechaActual.getDate();
+			int diasTranscurridos = diasActual - diasInicio;
+			return Math.floorDiv(diasTranscurridos,7) + 1;
+		}
 	}
 
 }

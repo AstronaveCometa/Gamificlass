@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}" />
   </head>
 <body>
+	
     <main>
         <form th:action="@{/seleccionarAsignatura}" th:object="${todasLasAsignaturas}" method="post">
             <label for="asignatura">Seleccione asignatura: </label>
@@ -16,7 +17,7 @@
                 </select>
             <button type="submit" id="boton">Seleccionar</button>
         </form>
-
+		<h2>Semana </h2><h2 th:text="${semana}"></h2>
         <table>
             <thead>
                 <tr>
@@ -34,10 +35,14 @@
                     <td th:text="${est.Estudiante_nivel}"></td>
                     <td th:text="${est.Estudiante_puntaje}"></td>
 					<td>
-<a th:href="@{/respondeEnClase/{id}(id=est.Estudiante_id)}">Responde en clase</a>
+						
+<a th:href="@{/respondeEnClase/{id}(id=${est.Estudiante_id})}">Responde en clase</a>
+
+<!--
 <a th:href="@{/resuelveEnClase/{id}(id=est.Estudiante_id)}">Resuelve en clase</a>
 <a th:href="@{/detectaErrores/{id}(id=est.Estudiante_id)}">Detecta errores</a>
 <a th:href="@{/corrigeErrores/{id}(id=est.Estudiante_id)}">Corrige errores</a>
+						-->
 					</td>
                 </tr>
             </tbody>
