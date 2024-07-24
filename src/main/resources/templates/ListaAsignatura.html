@@ -36,13 +36,15 @@
                     <td th:text="${est.Estudiante_puntaje}"></td>
 					<td>
 						
-<a th:href="@{/respondeEnClase/{id}(id=${est.Estudiante_id})}">Responde en clase</a>
+<a th:href="@{/respondeEnClase/{idEstudiante}(idEstudiante=${est.Estudiante_id})}">Responde en clase</a>
+<a th:href="@{/resuelveEnClase/{idEstudiante}(idEstudiante=${est.Estudiante_id})}">Resuelve en clase</a>
+<a th:href="@{/detectaErrores/{idEstudiante}(idEstudiante=${est.Estudiante_id})}">Detecta errores</a>
+<a th:href="@{/corrigeErrores/{idEstudiante}(idEstudiante=${est.Estudiante_id})}">Corrige errores</a>
+<a th:href="@{/mencionaRegla/{idEstudiante}(idEstudiante=${est.Estudiante_id})}">Menciona regla</a>
 
-<!--
-<a th:href="@{/resuelveEnClase/{id}(id=est.Estudiante_id)}">Resuelve en clase</a>
-<a th:href="@{/detectaErrores/{id}(id=est.Estudiante_id)}">Detecta errores</a>
-<a th:href="@{/corrigeErrores/{id}(id=est.Estudiante_id)}">Corrige errores</a>
-						-->
+<a th:href="@{/preguntaEnChat/{idEstudiante}(idEstudiante=${est.Estudiante_id})}">Pregunta en chat</a>
+<a th:href="@{/respondeEnChat/{idEstudiante}(idEstudiante=${est.Estudiante_id})}">Responde en chat</a>
+
 					</td>
                 </tr>
             </tbody>

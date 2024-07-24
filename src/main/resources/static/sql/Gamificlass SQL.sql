@@ -19,8 +19,6 @@ create table Gamificlass.Niveles (
     primary key (Nivel_id)
 );
 
-SELECT * FROM Gamificlass.Niveles WHERE Nivel_puntaje_inicio >= 500 AND Nivel_puntaje_final <= 500;
-
 create table Gamificlass.Actividades (
 	Actividad_id int not null auto_increment,
     Actividad_descripcion varchar(50) not null,

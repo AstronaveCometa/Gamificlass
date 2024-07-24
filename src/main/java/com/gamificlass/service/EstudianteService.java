@@ -7,12 +7,26 @@ import org.springframework.stereotype.Service;
 
 import com.gamificlass.entity.Estudiante;
 import com.gamificlass.repository.EstudianteDAO;
+import com.gamificlass.repository.NivelDAO;
+
 
 @Service
 public class EstudianteService {
 
 	@Autowired
 	private EstudianteDAO estudianteDAO;
+	
+	@Autowired
+	private NivelDAO nivelDAO;
+	
+	public boolean subirDeNivel(int IdEstudiante, Long puntajeObtenido) {
+		if(nivelDAO.subeDeNivel(IdEstudiante, puntajeObtenido)) {
+			nivelDAO.subirDeNivel(IdEstudiante, puntajeObtenido);
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public List<Estudiante> obtenerTodosLosEstudiantes(){
 		return estudianteDAO.obtenerTodosLosEstudiantes();
@@ -37,5 +51,6 @@ public class EstudianteService {
 	public void eliminarEstudiantePorId(int ID) {
 		estudianteDAO.eliminarEstudiantePorId(ID);
 	}
+	
 	
 }
