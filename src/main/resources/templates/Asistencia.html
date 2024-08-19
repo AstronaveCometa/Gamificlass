@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Asistencia</title>
+    <link rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}" />
+  </head>
+<body>
+	
+    <main>
+        <form th:action="@{/seleccionarAsignatura}" th:object="${todasLasAsignaturas}" method="post">
+            <label for="asignatura">Seleccione asignatura: </label>
+                <select th:id="asignatura" th:field="${asignaturaActual.Asignatura_id}">
+                    <option th:each="asignat : ${todasLasAsignaturas}" th:value="${asignat.Asignatura_id}">
+                        <p th:text="${asignat.Asignatura_nombre}"></p>
+                    </option>
+                </select>
+            <button type="submit" id="boton">Seleccionar</button>
+        </form>
+		
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Semana 1</th>
+					<th>Semana 2</th>
+					<th>Semana 3</th>
+					<th>Semana 4</th>
+					<th>Semana 5</th>
+					<th>Semana 6</th>
+					<th>Semana 7</th>
+					<th>Semana 8</th>
+					<th>Semana 9</th>
+					<th>Semana 10</th>
+					<th>Semana 11</th>
+					<th>Semana 12</th>
+					<th>Semana 13</th>
+					<th>Semana 14</th>
+					<th>Semana 15</th>
+					<th>Semana 16</th>
+					<th>Semana 17</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="est:${EstudiantesYAsistencias}">
+                    <td th:text="${est.Estudiante_nombre}"></td>
+                    <td th:text="${est.Estudiante_apellido}"></td>
+                    <td th:text="${est.getAsistencias().get(0))}"></td>
+					<td th:text="${est.getAsistencias().get(1))}"></td>
+					<td th:text="${est.getAsistencias().get(2))}"></td>
+					<td th:text="${est.getAsistencias().get(3))}"></td>
+					<td th:text="${est.getAsistencias().get(4))}"></td>
+					<td th:text="${est.getAsistencias().get(5))}"></td>
+					<td th:text="${est.getAsistencias().get(6))}"></td>
+					<td th:text="${est.getAsistencias().get(7))}"></td>
+					<td th:text="${est.getAsistencias().get(8))}"></td>
+					<td th:text="${est.getAsistencias().get(9))}"></td>
+					<td th:text="${est.getAsistencias().get(10))}"></td>
+					<td th:text="${est.getAsistencias().get(11))}"></td>
+					<td th:text="${est.getAsistencias().get(12))}"></td>
+					<td th:text="${est.getAsistencias().get(13))}"></td>
+					<td th:text="${est.getAsistencias().get(14))}"></td>
+					<td th:text="${est.getAsistencias().get(15))}"></td>
+					<td th:text="${est.getAsistencias().get(16))}"></td>
+					
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>

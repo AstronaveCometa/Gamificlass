@@ -21,12 +21,14 @@ create table Gamificlass.Niveles (
 
 create table Gamificlass.Actividades (
 	Actividad_id int not null auto_increment,
+    Actividad_estudiante_id int not null,
     Actividad_descripcion varchar(50) not null,
     Actividad_puntaje_base long not null,
     Actividad_fecha timestamp not null,
     Actividad_racha double not null,
     Actividad_puntaje_final long not null,
-    primary key(Actividad_id)
+    primary key(Actividad_id),
+    foreign key (Actividad_estudiante_id) references Gamificlass.Estudiantes (Estudiante_id)
     
 );
 
@@ -40,9 +42,11 @@ create table Gamificlass.Rachas (
 
 create table Gamificlass.Asistencias (
 	Asistencia_id int not null auto_increment,
+    Asistencia_estudiante_id int not null,
     Asistencia_fecha date not null,
     Asistencia_estado varchar(1) not null,
-    primary key (Asistencia_id)
+    primary key (Asistencia_id),
+    foreign key (Asistencia_estudiante_id) references Gamificlass.Estudiantes (Estudiante_id)
 );
 
 create table Gamificlass.Asignaturas (

@@ -72,6 +72,7 @@ public class AsignaturaDAOImpl implements AsignaturaDAO {
 		} else {
 			String inicio = resultado.get(0).getAsignatura_inicio();
 			Date fechaActual = new Date();
+			System.out.println(fechaActual);
 			int diasInicio = Integer.parseInt(inicio.substring(5, 7))*30 + Integer.parseInt(inicio.substring(8));
 			int diasActual = (fechaActual.getMonth()+1)*30 + fechaActual.getDate();
 			int diasTranscurridos = diasActual - diasInicio;
